@@ -1,13 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { 
   LayoutDashboard, 
-  CloudSun, 
-  Wind, 
-  Battery, 
-  Sun, 
-  BarChart3, 
-  FileText, 
-  Settings 
+  Wind
 } from "lucide-react";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -18,13 +12,6 @@ function cn(...inputs: (string | undefined | null | false)[]) {
 
 const navItems = [
   { name: "Dashboard", path: "/", icon: LayoutDashboard },
-  { name: "Weather", path: "/weather", icon: CloudSun },
-  { name: "Wind", path: "/wind", icon: Wind },
-  { name: "Power", path: "/power", icon: Battery },
-  { name: "Solar", path: "/solar", icon: Sun },
-  { name: "Analytics", path: "/analytics", icon: BarChart3 },
-  { name: "Reports", path: "/reports", icon: FileText },
-  { name: "Settings", path: "/settings", icon: Settings },
 ];
 
 export function Sidebar() {

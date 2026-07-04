@@ -1,42 +1,61 @@
+import { useState } from "react";
 import { KPICard } from "../../components/Cards/KPICard";
-import { Thermometer, Droplets, Wind, Compass, Gauge, Sun } from "lucide-react";
-import { ThreeScene } from "../../components/ThreeScene/ThreeScene";
+import { MetricDetailOverlay } from "../../components/Cards/MetricDetailOverlay";
+import { 
+  Thermometer, 
+  Droplets, 
+  Sun, 
+  Gauge, 
+  Wind, 
+  Compass, 
+  CloudRain, 
+  SunDim, 
+  Battery, 
+  Activity 
+} from "lucide-react";
 
 export function Dashboard() {
+  const [selectedMetric, setSelectedMetric] = useState<string | null>(null);
+
+  const handleMetricClick = (metric: string) => {
+    setSelectedMetric(metric === selectedMetric ? null : metric);
+  };
+
   return (
     <div className="p-8 pb-24 h-full flex flex-col gap-8">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight mb-2">Dashboard Overview</h1>
-        <p className="text-muted-foreground">Real-time monitoring of wind and weather systems.</p>
+        <h1 className="text-3xl font-bold tracking-tight mb-2">Weather Monitoring Station</h1>
+        <p className="text-muted-foreground">Real-time data access for environmental sensors and power supply.</p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4">
-        <KPICard title="Temperature" value="24.5" unit="°C" trend={2.3} icon={<Thermometer />} />
-        <KPICard title="Humidity" value="45" unit="%" trend={-1.5} icon={<Droplets />} />
-        <KPICard title="Wind Speed" value="12.4" unit="m/s" trend={5.2} icon={<Wind />} />
-        <KPICard title="Wind Direction" value="NW" unit="315°" icon={<Compass />} />
-        <KPICard title="Pressure" value="1012" unit="hPa" trend={0.1} icon={<Gauge />} />
-        <KPICard title="Solar Radiation" value="850" unit="W/m²" trend={12.4} icon={<Sun />} />
-      </div>
-
-      <div className="flex-1 min-h-[500px] glass rounded-3xl overflow-hidden relative border-white/5">
-        <div className="absolute inset-0 z-0">
-          <ThreeScene />
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+        <KPICard title="Air Temperature" value="24.5" unit="°C" icon={<Thermometer />} onClick={() => handleMetricClick("Air Temperature")} isActive={selectedMetric === "Air Temperature"} />
+        <KPICard title="Relative Humidity" value="45" unit="%" icon={<Droplets />} onClick={() => handleMetricClick("Relative Humidity")} isActive={selectedMetric === "Relative Humidity"} />
+        <KPICard title="Solar Radiation" value="850" unit="W/m²" icon={<Sun />} onClick={() => handleMetricClick("Solar Radiation")} isActive={selectedMetric === "Solar Radiation"} />
+        <KPICard title="Atmospheric Pressure" value="101.2" unit="kPa" icon={<Gauge />} onClick={() => handleMetricClick("Atmospheric Pressure")} isActive={selectedMetric === "Atmospheric Pressure"} />
+        <KPICard title="Air Quality (PM2.5)" value="22" unit="ppm" icon={<Activity />} onClick={() => handleMetricClick("Air Quality (PM2.5)")} isActive={selectedMetric === "Air Quality (PM2.5)"} />
         
-        {/* Overlay content on top of 3D scene */}
-        <div className="absolute inset-x-8 top-8 z-10 flex justify-between pointer-events-none">
-          <div className="glass p-4 rounded-xl pointer-events-auto">
-            <h3 className="text-sm font-medium text-muted-foreground mb-1">Current Output</h3>
-            <div className="text-3xl font-mono font-bold text-emerald">2.4 <span className="text-lg">MW</span></div>
-          </div>
-          
-          <div className="glass p-4 rounded-xl pointer-events-auto">
-            <h3 className="text-sm font-medium text-muted-foreground mb-1">Efficiency</h3>
-            <div className="text-3xl font-mono font-bold text-primary">94.2 <span className="text-lg">%</span></div>
-          </div>
-        </div>
+        <KPICard title="Wind Speed" value="12.4" unit="m/s" icon={<Wind />} onClick={() => handleMetricClick("Wind Speed")} isActive={selectedMetric === "Wind Speed"} />
+        <KPICard title="Wind Direction" value="NW" unit="" icon={<Compass />} onClick={() => handleMetricClick("Wind Direction")} isActive={selectedMetric === "Wind Direction"} />
+        <KPICard title="Rainfall" value="12" unit="mm" icon={<CloudRain />} onClick={() => handleMetricClick("Rainfall")} isActive={selectedMetric === "Rainfall"} />
+        <KPICard title="UV Index" value="6" unit="" icon={<SunDim />} onClick={() => handleMetricClick("UV Index")} isActive={selectedMetric === "UV Index"} />
+        <KPICard title="Battery Level" value="98" unit="%" icon={<Battery />} onClick={() => handleMetricClick("Battery Level")} isActive={selectedMetric === "Battery Level"} />
       </div>
+
+      {selectedMetric ? (
+        <MetricDetailOverlay 
+          metric={selectedMetric} 
+          onClose={() => setSelectedMetric(null)} 
+        />
+      ) : (
+        <div className="flex-1 glass rounded-3xl overflow-hidden p-8 border-white/5 flex flex-col items-center justify-center text-center animate-in fade-in zoom-in duration-300">
+          <Wind className="w-24 h-24 text-primary opacity-20 mb-4" />
+          <h2 className="text-2xl font-bold mb-2">System Status: Active</h2>
+          <p className="text-muted-foreground max-w-lg">
+            The Weather Monitoring Station is operating normally. All sensors are reporting real-time data within expected operating ranges. The 75W Solar Panel is currently charging the 12V/40AH battery.
+          </p>
+        </div>
+      )}
     </div>
   );
 }

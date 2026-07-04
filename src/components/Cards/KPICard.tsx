@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import type { ReactNode } from "react";
 import { ArrowUpRight, ArrowDownRight } from "lucide-react";
 import { cn } from "../../lib/utils";
 
@@ -9,12 +9,25 @@ interface KPICardProps {
   trend?: number; // positive or negative percentage
   icon?: ReactNode;
   className?: string;
+  onClick?: () => void;
+  isActive?: boolean;
 }
 
-export function KPICard({ title, value, unit, trend, icon, className }: KPICardProps) {
+export function KPICard({ title, value, unit, trend, icon, className, onClick, isActive }: KPICardProps) {
   return (
-    <div className={cn("glass p-6 rounded-2xl flex flex-col gap-4 relative overflow-hidden group hover:bg-white/10 transition-all", className)}>
-      <div className="absolute -right-4 -top-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl group-hover:bg-primary/20 transition-all" />
+    <div 
+      onClick={onClick}
+      className={cn(
+        "glass p-6 rounded-2xl flex flex-col gap-4 relative overflow-hidden group hover:bg-white/10 transition-all", 
+        onClick && "cursor-pointer",
+        isActive && "ring-2 ring-primary bg-white/10",
+        className
+      )}
+    >
+      <div className={cn(
+        "absolute -right-4 -top-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl transition-all",
+        isActive ? "bg-primary/30" : "group-hover:bg-primary/20"
+      )} />
 
       <div className="flex items-center justify-between">
         <span className="text-sm font-medium text-muted-foreground">{title}</span>

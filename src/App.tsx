@@ -3,13 +3,6 @@ import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Navbar } from "./components/Navbar/Navbar";
 
 import { Dashboard } from "./pages/Dashboard/Dashboard";
-import { Weather } from "./pages/Weather/Weather";
-import { Wind } from "./pages/Wind/Wind";
-import { Power } from "./pages/Power/Power";
-import { Solar } from "./pages/Solar/Solar";
-import { Analytics } from "./pages/Analytics/Analytics";
-import { Reports } from "./pages/Reports/Reports";
-import { Settings } from "./pages/Settings/Settings";
 import { Login } from "./pages/Login/Login";
 
 function DashboardLayout() {
@@ -39,13 +32,6 @@ function App() {
         
         <Route element={<DashboardLayout />}>
           <Route path="/" element={<Dashboard />} />
-          <Route path="/weather" element={<Weather />} />
-          <Route path="/wind" element={<Wind />} />
-          <Route path="/power" element={<Power />} />
-          <Route path="/solar" element={<Solar />} />
-          <Route path="/analytics" element={<Analytics />} />
-          <Route path="/reports" element={<Reports />} />
-          <Route path="/settings" element={<Settings />} />
         </Route>
       </Routes>
     </Router>
