@@ -190,7 +190,7 @@ export function HistoryPage() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="p-8 pb-24 min-h-full flex flex-col gap-8 relative overflow-hidden md:pl-72 animate-fade-in"
+      className="p-8 pb-24 min-h-full flex flex-col gap-8 relative overflow-hidden animate-fade-in"
     >
       <WeatherParticles />
 

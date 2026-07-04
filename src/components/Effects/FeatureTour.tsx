@@ -14,7 +14,7 @@ export function FeatureTour({ onComplete }: FeatureTourProps) {
   // 3: Success Animation
   const [step, setStep] = useState<number>(0);
   const [coords, setCoords] = useState<{ x: number; y: number; width: number; height: number } | null>(null);
-  
+
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const particles = useRef<any[]>([]);
   const animationFrameId = useRef<number | null>(null);
@@ -23,7 +23,7 @@ export function FeatureTour({ onComplete }: FeatureTourProps) {
   useEffect(() => {
     // Disable scrolling
     document.body.style.overflow = "hidden";
-    
+
     // Keydown handler to disable keyboard navigation (e.g. Tab) and exit shortcuts
     const handleKeyDown = (e: KeyboardEvent) => {
       // Prevent Tab key to keep focus trapped, and Escape / function keys
@@ -31,9 +31,9 @@ export function FeatureTour({ onComplete }: FeatureTourProps) {
         e.preventDefault();
       }
     };
-    
+
     window.addEventListener("keydown", handleKeyDown, { capture: true });
-    
+
     return () => {
       document.body.style.overflow = "";
       window.removeEventListener("keydown", handleKeyDown, { capture: true });
@@ -67,7 +67,7 @@ export function FeatureTour({ onComplete }: FeatureTourProps) {
 
   useEffect(() => {
     updateTargetCoordinates();
-    
+
     // Listen to resize and scroll to keep coordinates updated
     window.addEventListener("resize", updateTargetCoordinates);
     window.addEventListener("scroll", updateTargetCoordinates);
@@ -75,7 +75,7 @@ export function FeatureTour({ onComplete }: FeatureTourProps) {
     return () => {
       window.removeEventListener("resize", updateTargetCoordinates);
       window.removeEventListener("scroll", updateTargetCoordinates);
-      
+
       // Cleanup highlights
       ["card-air-temp", "card-rel-humidity"].forEach((id) => {
         document.getElementById(id)?.classList.remove("tour-highlighted");
@@ -85,31 +85,26 @@ export function FeatureTour({ onComplete }: FeatureTourProps) {
 
   // Click handlers on target buttons to intercept and advance steps
   useEffect(() => {
-    const btn1 = document.getElementById("card-air-temp");
-    const btn2 = document.getElementById("card-rel-humidity");
+    const handleGlobalClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
 
-    const handleBtn1Click = (e: MouseEvent) => {
       if (step === 1) {
-        e.preventDefault();
-        e.stopPropagation();
-        setStep(2);
+        const card = document.getElementById("card-air-temp");
+        if (card && (card === target || card.contains(target))) {
+          setStep(2);
+        }
+      } else if (step === 2) {
+        const card = document.getElementById("card-rel-humidity");
+        if (card && (card === target || card.contains(target))) {
+          setStep(3);
+        }
       }
     };
 
-    const handleBtn2Click = (e: MouseEvent) => {
-      if (step === 2) {
-        e.preventDefault();
-        e.stopPropagation();
-        setStep(3);
-      }
-    };
-
-    btn1?.addEventListener("click", handleBtn1Click, { capture: true });
-    btn2?.addEventListener("click", handleBtn2Click, { capture: true });
+    window.addEventListener("click", handleGlobalClick, { capture: true });
 
     return () => {
-      btn1?.removeEventListener("click", handleBtn1Click, { capture: true });
-      btn2?.removeEventListener("click", handleBtn2Click, { capture: true });
+      window.removeEventListener("click", handleGlobalClick, { capture: true });
     };
   }, [step]);
 
@@ -118,7 +113,7 @@ export function FeatureTour({ onComplete }: FeatureTourProps) {
     if (step === 3) {
       const canvas = canvasRef.current;
       if (!canvas) return;
-      
+
       const ctx = canvas.getContext("2d");
       if (!ctx) return;
 
@@ -187,9 +182,9 @@ export function FeatureTour({ onComplete }: FeatureTourProps) {
     <div className="fixed inset-0 w-full h-full z-[9999] pointer-events-none select-none">
       {/* 1. Glassmorphism Background Overlay */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
+        initial={{ opacity: 1 }}
+        animate={{ opacity: 0 }}
+        exit={{ opacity: 1 }}
         className="absolute inset-0 bg-slate-950/70 backdrop-blur-md pointer-events-auto"
       />
 

@@ -12,9 +12,9 @@ export function Navbar() {
   }, []);
 
   return (
-    <header className="glass h-20 w-full fixed top-0 left-0 md:pl-64 z-30 flex items-center justify-between px-8">
+    <header className="glass h-20 w-full fixed top-0 left-0 z-30 flex items-center justify-between px-8">
       {/* Left side: Date & Time */}
-      <div className="hidden md:flex flex-col items-start">
+      <div className="flex flex-col items-start">
         <span className="text-sm font-medium text-foreground">
           {time.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
         </span>

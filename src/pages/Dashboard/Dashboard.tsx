@@ -275,8 +275,9 @@ export function Dashboard() {
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 z-10"
       >
         {cardsData.map((card) => (
-          <motion.div id={card.id} key={card.title} variants={cardVariants}>
+          <motion.div key={card.title} variants={cardVariants}>
             <KPICard 
+              id={card.id}
               title={card.title} 
               value={card.value} 
               unit={card.unit} 

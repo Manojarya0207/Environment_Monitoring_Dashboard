@@ -5,6 +5,7 @@ import { cn } from "../../lib/utils";
 import { Skeleton } from "../ui/skeleton";
 
 interface KPICardProps {
+  id?: string;
   title: string;
   value: string;
   unit?: string;
@@ -17,6 +18,7 @@ interface KPICardProps {
 }
 
 export function KPICard({ 
+  id,
   title, 
   value, 
   unit, 
@@ -47,7 +49,7 @@ export function KPICard({
 
   if (isLoading) {
     return (
-      <div className={cn("glass p-6 rounded-2xl flex flex-col gap-4 relative overflow-hidden premium-shadow", className)}>
+      <div id={id} className={cn("glass p-6 rounded-2xl flex flex-col gap-4 relative overflow-hidden premium-shadow", className)}>
         <div className="flex items-center justify-between">
           <Skeleton className="h-4 w-24 bg-primary/20" />
           <Skeleton className="h-6 w-6 rounded-md bg-primary/20" />
@@ -67,6 +69,7 @@ export function KPICard({
 
   return (
     <motion.div 
+      id={id}
       onClick={onClick}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
