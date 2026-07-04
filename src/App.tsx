@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, Outlet, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
-import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Navbar } from "./components/Navbar/Navbar";
 
 import { Dashboard } from "./pages/Dashboard/Dashboard";
@@ -11,9 +10,7 @@ import { ProtectedRoute } from "./components/Auth/ProtectedRoute";
 function DashboardLayout() {
   return (
     <div className="min-h-screen bg-background text-foreground flex">
-      <Sidebar />
-
-      <main className="flex-1 md:pl-64 flex flex-col relative z-10 min-h-screen overflow-x-hidden">
+      <main className="flex-1 flex flex-col relative z-10 min-h-screen overflow-x-hidden">
         <Navbar />
         <div className="pt-20 flex-1 flex flex-col">
           <Outlet />
