@@ -1,4 +1,4 @@
-import { Search, Bell } from "lucide-react";
+import { Bell } from "lucide-react";
 import { useEffect, useState } from "react";
 
 export function Navbar() {
