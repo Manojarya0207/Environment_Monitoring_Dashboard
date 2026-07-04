@@ -1,7 +1,6 @@
 import { NavLink } from "react-router-dom";
 import {
-  LayoutDashboard,
-  Wind
+  LayoutDashboard
 } from "lucide-react";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";

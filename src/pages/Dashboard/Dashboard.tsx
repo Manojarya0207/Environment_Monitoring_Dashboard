@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 import { KPICard } from "../../components/Cards/KPICard";
 import { MetricDetailOverlay } from "../../components/Cards/MetricDetailOverlay";
-import { 
-  Thermometer, 
-  Droplets, 
-  Sun, 
-  Gauge, 
-  Wind, 
-  Compass, 
-  CloudRain, 
-  SunDim, 
-  Battery, 
-  Activity 
+import {
+  Thermometer,
+  Droplets,
+  Sun,
+  Gauge,
+  Wind,
+  Compass,
+  CloudRain,
+  SunDim,
+  Battery,
+  Activity
 } from "lucide-react";
 
 export function Dashboard() {
@@ -43,7 +43,7 @@ export function Dashboard() {
         <KPICard title="Solar Radiation" value="850" unit="W/m²" icon={<Sun />} onClick={() => handleMetricClick("Solar Radiation")} isActive={selectedMetric === "Solar Radiation"} isLoading={isLoading} />
         <KPICard title="Atmospheric Pressure" value="101.2" unit="kPa" icon={<Gauge />} onClick={() => handleMetricClick("Atmospheric Pressure")} isActive={selectedMetric === "Atmospheric Pressure"} isLoading={isLoading} />
         <KPICard title="Air Quality (PM2.5)" value="22" unit="ppm" icon={<Activity />} onClick={() => handleMetricClick("Air Quality (PM2.5)")} isActive={selectedMetric === "Air Quality (PM2.5)"} isLoading={isLoading} />
-        
+
         <KPICard title="Wind Speed" value="12.4" unit="m/s" icon={<Wind />} onClick={() => handleMetricClick("Wind Speed")} isActive={selectedMetric === "Wind Speed"} isLoading={isLoading} />
         <KPICard title="Wind Direction" value="NW" unit="" icon={<Compass />} onClick={() => handleMetricClick("Wind Direction")} isActive={selectedMetric === "Wind Direction"} isLoading={isLoading} />
         <KPICard title="Rainfall" value="12" unit="mm" icon={<CloudRain />} onClick={() => handleMetricClick("Rainfall")} isActive={selectedMetric === "Rainfall"} isLoading={isLoading} />
@@ -52,9 +52,9 @@ export function Dashboard() {
       </div>
 
       {selectedMetric ? (
-        <MetricDetailOverlay 
-          metric={selectedMetric} 
-          onClose={() => setSelectedMetric(null)} 
+        <MetricDetailOverlay
+          metric={selectedMetric}
+          onClose={() => setSelectedMetric(null)}
         />
       ) : (
         <div className="flex-1 glass rounded-3xl overflow-hidden p-8 border-white/5 flex flex-col items-center justify-center text-center animate-in fade-in zoom-in duration-300">

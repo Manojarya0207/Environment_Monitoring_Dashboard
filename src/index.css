@@ -54,6 +54,7 @@
 }
 
 @layer base {
+
   *,
   ::after,
   ::before,
@@ -61,15 +62,18 @@
   ::file-selector-button {
     border-color: var(--color-border, currentColor);
   }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: 'Inter', system-ui, sans-serif;
     @apply bg-background text-foreground;
   }
+
   * {
     @apply border-border outline-ring/50;
   }
+
   html {
     @apply font-sans;
   }
