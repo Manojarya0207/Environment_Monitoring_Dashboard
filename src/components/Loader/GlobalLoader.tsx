@@ -129,55 +129,6 @@ export function GlobalLoader() {
         >
           <LuckCloverAnimation />
         </motion.div>
-
-        {/* Brand text */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="flex flex-col items-center gap-3 text-center"
-        >
-          <h1
-            className="text-2xl md:text-3xl font-bold tracking-wider"
-            style={{
-              background: "linear-gradient(135deg, #0f172a 0%, #334155 50%, #0f172a 100%)",
-              backgroundSize: "200% 200%",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
-            Environment Monitoring System
-          </h1>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            className="text-sm text-slate-600 tracking-wide font-medium"
-          >
-            Building a Sustainable Future Together
-          </motion.p>
-        </motion.div>
-
-        {/* Loading dots */}
-        <div className="flex gap-1.5 mt-2">
-          {[0, 1, 2, 3, 4].map((i) => (
-            <motion.div
-              key={i}
-              className="w-1.5 h-1.5 rounded-full bg-emerald-500"
-              animate={{
-                opacity: [0.2, 1, 0.2],
-                scale: [0.8, 1.2, 0.8],
-              }}
-              transition={{
-                duration: 1.2,
-                repeat: Infinity,
-                delay: i * 0.15,
-                ease: "easeInOut",
-              }}
-            />
-          ))}
-        </div>
       </div>
     </div>
   );
