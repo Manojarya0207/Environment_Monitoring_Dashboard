@@ -13,11 +13,11 @@ export function Navbar() {
     <header className="glass h-20 w-full fixed top-0 left-0 md:pl-64 z-30 flex items-center justify-between px-8">
       <div className="flex items-center gap-4 flex-1">
         <div className="relative w-full max-w-md hidden md:block">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[#334155]" strokeWidth={2} />
           <input
             type="text"
             placeholder="Search dashboards, metrics, reports..."
-            className="w-full bg-black/20 border border-white/10 rounded-full pl-10 pr-4 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
+            className="w-full bg-white border border-[#e2e8f0] rounded-full pl-12 pr-4 py-2.5 text-sm text-[#1e293b] placeholder:text-[#94a3b8] focus:outline-none focus:ring-2 focus:ring-[#0ea5e9]/20 focus:border-[#cbd5e1] shadow-[0_2px_8px_rgba(0,0,0,0.04)] transition-all"
           />
         </div>
       </div>

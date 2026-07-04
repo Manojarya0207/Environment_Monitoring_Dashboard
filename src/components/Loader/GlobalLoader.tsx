@@ -36,7 +36,7 @@ function LuckCloverAnimation() {
 }
 
 // --- Wind Turbine SVG Component ---
-function WindTurbine({ x, scale = 1, delay = 0 }: { x: number; scale?: number; delay?: number }) {
+export function WindTurbine({ x, scale = 1, delay = 0 }: { x: number; scale?: number; delay?: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -69,7 +69,7 @@ function WindTurbine({ x, scale = 1, delay = 0 }: { x: number; scale?: number; d
 }
 
 // --- Floating Energy Particles ---
-function EnergyParticles() {
+export function EnergyParticles() {
   const particles = Array.from({ length: 14 }, (_, i) => ({
     id: i,
     x: Math.random() * 100,
