@@ -6,17 +6,17 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
-  --color-primary-blue: #2563EB;
+  --color-primary-blue: #0ea5e9;
   --color-cyan: #06B6D4;
   --color-emerald: #10B981;
   --color-amber: #F59E0B;
   --color-red-alert: #EF4444;
-  --color-dark-bg: #0F172A;
-  --color-card-bg: #1E293B;
-  --color-text-primary: #F8FAFC;
-  --color-text-secondary: #94A3B8;
+  --color-light-bg: #f0fdfa;
+  --color-card-bg: #ffffff;
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
 
-  --color-background: var(--color-dark-bg);
+  --color-background: var(--color-light-bg);
   --color-foreground: var(--color-text-primary);
 
   --color-card: var(--color-card-bg);
@@ -28,10 +28,10 @@
   --color-primary: var(--color-primary-blue);
   --color-primary-foreground: #ffffff;
 
-  --color-secondary: #334155;
+  --color-secondary: #f1f5f9;
   --color-secondary-foreground: var(--color-text-primary);
 
-  --color-muted: #1e293b;
+  --color-muted: #f8fafc;
   --color-muted-foreground: var(--color-text-secondary);
 
   --color-accent: var(--color-cyan);
@@ -40,17 +40,18 @@
   --color-destructive: var(--color-red-alert);
   --color-destructive-foreground: #ffffff;
 
-  --color-border: #334155;
-  --color-input: #334155;
+  --color-border: #e2e8f0;
+  --color-input: #e2e8f0;
   --color-ring: var(--color-primary-blue);
 
   --radius: 0.5rem;
 }
 
 @utility glass {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
 }
 
 @layer base {

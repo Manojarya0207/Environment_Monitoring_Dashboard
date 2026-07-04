@@ -18,15 +18,15 @@ export function KPICard({ title, value, unit, trend, icon, className, onClick, i
     <div 
       onClick={onClick}
       className={cn(
-        "glass p-6 rounded-2xl flex flex-col gap-4 relative overflow-hidden group hover:bg-white/10 transition-all", 
+        "glass p-6 rounded-2xl flex flex-col gap-4 relative overflow-hidden group hover:-translate-y-1 hover:shadow-lg transition-all duration-300", 
         onClick && "cursor-pointer",
-        isActive && "ring-2 ring-primary bg-white/10",
+        isActive && "ring-2 ring-primary bg-blue-50/30",
         className
       )}
     >
       <div className={cn(
         "absolute -right-4 -top-4 w-24 h-24 bg-primary/10 rounded-full blur-2xl transition-all",
-        isActive ? "bg-primary/30" : "group-hover:bg-primary/20"
+        isActive ? "bg-primary/20" : "group-hover:bg-primary/15"
       )} />
 
       <div className="flex items-center justify-between">

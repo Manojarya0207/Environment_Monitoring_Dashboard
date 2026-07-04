@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import { 
-  LayoutDashboard, 
+import {
+  LayoutDashboard,
   Wind
 } from "lucide-react";
 import { clsx } from "clsx";
@@ -18,10 +18,10 @@ export function Sidebar() {
   return (
     <aside className="glass w-64 h-screen fixed left-0 top-0 border-r border-border flex flex-col z-40 hidden md:flex">
       <div className="p-6 flex items-center gap-3">
-        <Wind className="text-primary w-8 h-8" />
-        <span className="text-xl font-bold text-foreground">WindSphere AI</span>
+
+        <span className="text-xl font-bold text-foreground">Environment Monitoring System</span>
       </div>
-      
+
       <nav className="flex-1 px-4 py-6 space-y-2">
         {navItems.map((item) => (
           <NavLink
@@ -30,9 +30,9 @@ export function Sidebar() {
             className={({ isActive }) =>
               cn(
                 "flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200",
-                isActive 
-                  ? "bg-primary/20 text-primary border border-primary/30" 
-                  : "text-muted-foreground hover:bg-white/5 hover:text-foreground"
+                isActive
+                  ? "bg-primary/10 text-primary border border-primary/20"
+                  : "text-muted-foreground hover:bg-black/5 hover:text-foreground"
               )
             }
           >
@@ -41,20 +41,8 @@ export function Sidebar() {
           </NavLink>
         ))}
       </nav>
-      
-      <div className="p-4 mt-auto">
-        <div className="glass p-4 rounded-xl">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-white font-bold">
-              OP
-            </div>
-            <div>
-              <p className="text-sm font-medium text-foreground">Operator</p>
-              <p className="text-xs text-muted-foreground">Active Shift</p>
-            </div>
-          </div>
-        </div>
-      </div>
+
+
     </aside>
   );
 }
