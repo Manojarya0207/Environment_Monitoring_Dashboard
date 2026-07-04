@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { KPICard } from "../../components/Cards/KPICard";
 import { MetricDetailOverlay } from "../../components/Cards/MetricDetailOverlay";
 import { 
@@ -16,6 +16,15 @@ import {
 
 export function Dashboard() {
   const [selectedMetric, setSelectedMetric] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate initial data loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleMetricClick = (metric: string) => {
     setSelectedMetric(metric === selectedMetric ? null : metric);
@@ -29,17 +38,17 @@ export function Dashboard() {
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
-        <KPICard title="Air Temperature" value="24.5" unit="°C" icon={<Thermometer />} onClick={() => handleMetricClick("Air Temperature")} isActive={selectedMetric === "Air Temperature"} />
-        <KPICard title="Relative Humidity" value="45" unit="%" icon={<Droplets />} onClick={() => handleMetricClick("Relative Humidity")} isActive={selectedMetric === "Relative Humidity"} />
-        <KPICard title="Solar Radiation" value="850" unit="W/m²" icon={<Sun />} onClick={() => handleMetricClick("Solar Radiation")} isActive={selectedMetric === "Solar Radiation"} />
-        <KPICard title="Atmospheric Pressure" value="101.2" unit="kPa" icon={<Gauge />} onClick={() => handleMetricClick("Atmospheric Pressure")} isActive={selectedMetric === "Atmospheric Pressure"} />
-        <KPICard title="Air Quality (PM2.5)" value="22" unit="ppm" icon={<Activity />} onClick={() => handleMetricClick("Air Quality (PM2.5)")} isActive={selectedMetric === "Air Quality (PM2.5)"} />
+        <KPICard title="Air Temperature" value="24.5" unit="°C" icon={<Thermometer />} onClick={() => handleMetricClick("Air Temperature")} isActive={selectedMetric === "Air Temperature"} isLoading={isLoading} />
+        <KPICard title="Relative Humidity" value="45" unit="%" icon={<Droplets />} onClick={() => handleMetricClick("Relative Humidity")} isActive={selectedMetric === "Relative Humidity"} isLoading={isLoading} />
+        <KPICard title="Solar Radiation" value="850" unit="W/m²" icon={<Sun />} onClick={() => handleMetricClick("Solar Radiation")} isActive={selectedMetric === "Solar Radiation"} isLoading={isLoading} />
+        <KPICard title="Atmospheric Pressure" value="101.2" unit="kPa" icon={<Gauge />} onClick={() => handleMetricClick("Atmospheric Pressure")} isActive={selectedMetric === "Atmospheric Pressure"} isLoading={isLoading} />
+        <KPICard title="Air Quality (PM2.5)" value="22" unit="ppm" icon={<Activity />} onClick={() => handleMetricClick("Air Quality (PM2.5)")} isActive={selectedMetric === "Air Quality (PM2.5)"} isLoading={isLoading} />
         
-        <KPICard title="Wind Speed" value="12.4" unit="m/s" icon={<Wind />} onClick={() => handleMetricClick("Wind Speed")} isActive={selectedMetric === "Wind Speed"} />
-        <KPICard title="Wind Direction" value="NW" unit="" icon={<Compass />} onClick={() => handleMetricClick("Wind Direction")} isActive={selectedMetric === "Wind Direction"} />
-        <KPICard title="Rainfall" value="12" unit="mm" icon={<CloudRain />} onClick={() => handleMetricClick("Rainfall")} isActive={selectedMetric === "Rainfall"} />
-        <KPICard title="UV Index" value="6" unit="" icon={<SunDim />} onClick={() => handleMetricClick("UV Index")} isActive={selectedMetric === "UV Index"} />
-        <KPICard title="Battery Level" value="98" unit="%" icon={<Battery />} onClick={() => handleMetricClick("Battery Level")} isActive={selectedMetric === "Battery Level"} />
+        <KPICard title="Wind Speed" value="12.4" unit="m/s" icon={<Wind />} onClick={() => handleMetricClick("Wind Speed")} isActive={selectedMetric === "Wind Speed"} isLoading={isLoading} />
+        <KPICard title="Wind Direction" value="NW" unit="" icon={<Compass />} onClick={() => handleMetricClick("Wind Direction")} isActive={selectedMetric === "Wind Direction"} isLoading={isLoading} />
+        <KPICard title="Rainfall" value="12" unit="mm" icon={<CloudRain />} onClick={() => handleMetricClick("Rainfall")} isActive={selectedMetric === "Rainfall"} isLoading={isLoading} />
+        <KPICard title="UV Index" value="6" unit="" icon={<SunDim />} onClick={() => handleMetricClick("UV Index")} isActive={selectedMetric === "UV Index"} isLoading={isLoading} />
+        <KPICard title="Battery Level" value="98" unit="%" icon={<Battery />} onClick={() => handleMetricClick("Battery Level")} isActive={selectedMetric === "Battery Level"} isLoading={isLoading} />
       </div>
 
       {selectedMetric ? (

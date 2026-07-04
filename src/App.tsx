@@ -1,22 +1,20 @@
-import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Outlet, useLocation } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
 import { Sidebar } from "./components/Sidebar/Sidebar";
 import { Navbar } from "./components/Navbar/Navbar";
 
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { Login } from "./pages/Login/Login";
+import { PageTransition } from "./components/PageTransition/PageTransition";
 
 function DashboardLayout() {
   return (
     <div className="min-h-screen bg-background text-foreground flex">
-      <div className="fixed inset-0 z-0 bg-gradient-to-br from-teal-50 via-cyan-100 to-sky-100" />
-      <div className="fixed top-1/4 left-1/4 w-96 h-96 bg-teal-200/40 rounded-full blur-[128px] z-0 pointer-events-none" />
-      <div className="fixed bottom-1/4 right-1/4 w-96 h-96 bg-cyan-200/40 rounded-full blur-[128px] z-0 pointer-events-none" />
-      
       <Sidebar />
       
       <main className="flex-1 md:pl-64 flex flex-col relative z-10 min-h-screen overflow-x-hidden">
         <Navbar />
-        <div className="pt-20 flex-1">
+        <div className="pt-20 flex-1 flex flex-col">
           <Outlet />
         </div>
       </main>
@@ -24,16 +22,40 @@ function DashboardLayout() {
   );
 }
 
+function AnimatedRoutes() {
+  const location = useLocation();
+  
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        <Route 
+          path="/login" 
+          element={
+            <PageTransition>
+              <Login />
+            </PageTransition>
+          } 
+        />
+        
+        <Route element={<DashboardLayout />}>
+          <Route 
+            path="/" 
+            element={
+              <PageTransition>
+                <Dashboard />
+              </PageTransition>
+            } 
+          />
+        </Route>
+      </Routes>
+    </AnimatePresence>
+  );
+}
+
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        
-        <Route element={<DashboardLayout />}>
-          <Route path="/" element={<Dashboard />} />
-        </Route>
-      </Routes>
+      <AnimatedRoutes />
     </Router>
   );
 }
