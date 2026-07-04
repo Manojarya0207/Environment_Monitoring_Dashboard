@@ -1,8 +1,10 @@
-import { Bell } from "lucide-react";
+import { Bell, History } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 export function Navbar() {
   const [time, setTime] = useState(new Date());
+  const location = useLocation();
 
   useEffect(() => {
     const timer = setInterval(() => setTime(new Date()), 1000);
@@ -21,8 +23,20 @@ export function Navbar() {
         </span>
       </div>
 
-      {/* Right side: Status and Bell */}
+      {/* Right side: Navigation, Status and Bell */}
       <div className="flex items-center gap-6">
+        <Link
+          to={location.pathname === "/history" ? "/" : "/history"}
+          className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold border transition-all duration-200 ${
+            location.pathname === "/history"
+              ? "bg-primary/20 text-primary border-primary/30"
+              : "glass hover:bg-white/10 text-foreground border-white/10"
+          }`}
+        >
+          <History className="w-4 h-4" />
+          <span>{location.pathname === "/history" ? "Back to Dashboard" : "View History"}</span>
+        </Link>
+
         <div className="glass px-3 py-1.5 rounded-full flex items-center gap-2 border-emerald/20 bg-emerald/10">
           <div className="w-2 h-2 rounded-full bg-emerald shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse" />
           <span className="text-xs font-medium text-emerald">System Nominal</span>

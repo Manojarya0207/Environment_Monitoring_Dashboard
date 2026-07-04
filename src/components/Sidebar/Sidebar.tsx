@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import {
-  LayoutDashboard
+  LayoutDashboard,
+  History
 } from "lucide-react";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
@@ -11,6 +12,7 @@ function cn(...inputs: (string | undefined | null | false)[]) {
 
 const navItems = [
   { name: "Dashboard", path: "/", icon: LayoutDashboard },
+  { name: "History", path: "/history", icon: History },
 ];
 
 export function Sidebar() {

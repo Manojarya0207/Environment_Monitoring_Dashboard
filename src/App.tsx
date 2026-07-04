@@ -4,6 +4,7 @@ import { Navbar } from "./components/Navbar/Navbar";
 
 import { Dashboard } from "./pages/Dashboard/Dashboard";
 import { Login } from "./pages/Login/Login";
+import { HistoryPage } from "./pages/History/History";
 import { PageTransition } from "./components/PageTransition/PageTransition";
 import { ProtectedRoute } from "./components/Auth/ProtectedRoute";
 
@@ -42,6 +43,14 @@ function AnimatedRoutes() {
               element={
                 <PageTransition>
                   <Dashboard />
+                </PageTransition>
+              }
+            />
+            <Route
+              path="/history"
+              element={
+                <PageTransition>
+                  <HistoryPage />
                 </PageTransition>
               }
             />
